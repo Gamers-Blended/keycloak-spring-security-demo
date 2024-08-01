@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: keycloak-demo
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # URL of keycloak instance
+          issuer-uri: http://localhost:8080/realms/sample
+          # URL to validate JWT
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
+server:
+  # 8080 used by keycloak
+  port: 8081
+
+jwt:
+  auth:
+    converter:
+      resource-id: sample-rest-api
+      principal-attribute: preferred_username
